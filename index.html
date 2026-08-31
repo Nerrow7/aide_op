@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistant Opération RP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <span class="eyebrow">EMS • OUTIL RP</span>
+        <h1>Assistant d'opération</h1>
+        <p>Un outil indépendant pour aider à construire rapidement un compte rendu médical en RP.</p>
+      </div>
+      <button type="button" class="btn danger" id="resetBtn">Réinitialiser</button>
+    </header>
+
+    <section class="operation-card">
+      <h3>1. Informations</h3>
+      <div class="form-grid">
+        <label>
+          Patient
+          <input type="text" id="patient" placeholder="Nom Prénom">
+        </label>
+        <label>
+          Médecin
+          <input type="text" id="doctor" placeholder="Nom Prénom">
+        </label>
+        <label>
+          Type d'intervention
+          <select id="operationType">
+            <option>Urgence</option>
+            <option>Opération</option>
+            <option>Consultation</option>
+            <option>Fusillade</option>
+            <option>Traumatisme</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="operation-card">
+      <h3>2. Blessures</h3>
+      <p class="muted">Clique sur une zone du corps puis choisis la blessure.</p>
+
+      <div class="injury-layout">
+        <div class="injury-left">
+          <div class="injury-picker" data-injury-picker>
+            <strong data-injury-zone>Sélectionne une zone</strong>
+            <div class="injury-options" id="injuryOptions"></div>
+          </div>
+
+          <div class="injury-list" data-injury-list>
+            <div class="empty">Aucune blessure sélectionnée.</div>
+          </div>
+        </div>
+
+        <div class="body-board" aria-label="Silhouette blessures">
+          <div class="body-silhouette">
+            <div class="body-head"></div>
+            <div class="body-neck"></div>
+            <div class="body-chest"></div>
+            <div class="body-abdomen"></div>
+            <div class="body-pelvis"></div>
+
+            <div class="body-arm left"></div>
+            <div class="body-arm right"></div>
+            <div class="body-forearm left"></div>
+            <div class="body-forearm right"></div>
+            <div class="body-hand left"></div>
+            <div class="body-hand right"></div>
+
+            <div class="body-leg left"></div>
+            <div class="body-leg right"></div>
+            <div class="body-knee left"></div>
+            <div class="body-knee right"></div>
+            <div class="body-foot left"></div>
+            <div class="body-foot right"></div>
+
+            <button type="button" class="body-zone" style="left:48%;top:4%" data-body-zone="Tête" title="Tête"></button>
+            <button type="button" class="body-zone" style="left:48%;top:15%" data-body-zone="Cou" title="Cou"></button>
+            <button type="button" class="body-zone" style="left:48%;top:28%" data-body-zone="Torse" title="Torse"></button>
+            <button type="button" class="body-zone" style="left:48%;top:43%" data-body-zone="Abdomen" title="Abdomen"></button>
+            <button type="button" class="body-zone" style="left:48%;top:56%" data-body-zone="Bassin" title="Bassin"></button>
+            <button type="button" class="body-zone" style="left:29%;top:30%" data-body-zone="Bras gauche" title="Bras gauche"></button>
+            <button type="button" class="body-zone" style="left:67%;top:30%" data-body-zone="Bras droit" title="Bras droit"></button>
+            <button type="button" class="body-zone" style="left:22%;top:45%" data-body-zone="Avant-bras gauche" title="Avant-bras gauche"></button>
+            <button type="button" class="body-zone" style="left:74%;top:45%" data-body-zone="Avant-bras droit" title="Avant-bras droit"></button>
+            <button type="button" class="body-zone" style="left:17%;top:58%" data-body-zone="Main gauche" title="Main gauche"></button>
+            <button type="button" class="body-zone" style="left:80%;top:58%" data-body-zone="Main droite" title="Main droite"></button>
+            <button type="button" class="body-zone" style="left:42%;top:70%" data-body-zone="Jambe gauche" title="Jambe gauche"></button>
+            <button type="button" class="body-zone" style="left:55%;top:70%" data-body-zone="Jambe droite" title="Jambe droite"></button>
+            <button type="button" class="body-zone" style="left:40%;top:82%" data-body-zone="Genou gauche" title="Genou gauche"></button>
+            <button type="button" class="body-zone" style="left:57%;top:82%" data-body-zone="Genou droit" title="Genou droit"></button>
+            <button type="button" class="body-zone" style="left:38%;top:95%" data-body-zone="Pied gauche" title="Pied gauche"></button>
+            <button type="button" class="body-zone" style="left:60%;top:95%" data-body-zone="Pied droit" title="Pied droit"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="operation-card">
+      <h3>3. Actes réalisés</h3>
+      <div class="choice-grid" data-choice-group="acts" id="acts"></div>
+    </section>
+
+    <section class="operation-card">
+      <h3>4. Soins post-opératoires</h3>
+      <div class="choice-grid" data-choice-group="postop" id="postop"></div>
+    </section>
+
+    <section class="operation-card">
+      <h3>5. Anesthésie</h3>
+      <div class="choice-grid single-choice" data-single-group="anesthesia">
+        <button type="button" class="choice-btn" data-choice-value="Aucune">Aucune</button>
+        <button type="button" class="choice-btn" data-choice-value="Locale">Locale</button>
+        <button type="button" class="choice-btn" data-choice-value="Générale">Générale</button>
+      </div>
+    </section>
+
+    <section class="operation-card compact-grid">
+      <div>
+        <h3>6. Déplacement / sortie</h3>
+        <div class="choice-grid single-choice" data-single-group="mobility">
+          <button type="button" class="choice-btn" data-choice-value="À pied">À pied</button>
+          <button type="button" class="choice-btn" data-choice-value="Fauteuil roulant">Fauteuil</button>
+          <button type="button" class="choice-btn" data-choice-value="Brancard">Brancard</button>
+        </div>
+      </div>
+
+      <div>
+        <h3>7. État du patient</h3>
+        <div class="choice-grid single-choice" data-single-group="status">
+          <button type="button" class="choice-btn" data-choice-value="Stable">Stable</button>
+          <button type="button" class="choice-btn" data-choice-value="Sous surveillance">Sous surveillance</button>
+          <button type="button" class="choice-btn" data-choice-value="Hospitalisé">Hospitalisé</button>
+          <button type="button" class="choice-btn" data-choice-value="Sortie autorisée">Sortie autorisée</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="operation-card">
+      <div class="report-head">
+        <div>
+          <h3>8. Compte rendu</h3>
+          <p class="muted">Génère un brouillon depuis les sélections, puis modifie-le librement.</p>
+        </div>
+        <div class="actions">
+          <button class="btn" type="button" id="generateBtn">Générer automatiquement</button>
+          <button class="btn primary" type="button" id="copyBtn">Copier</button>
+        </div>
+      </div>
+      <textarea rows="10" id="report" placeholder="Compte rendu médical..."></textarea>
+      <div id="copyStatus" class="status"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+*{box-sizing:border-box}
+:root{
+  --bg:#090e18;
+  --card:#111827;
+  --card2:#0d1422;
+  --border:#293548;
+  --text:#f3f7ff;
+  --muted:#9bacbf;
+  --accent:#48a8ff;
+  --accent2:#67c1ff;
+  --danger:#ff667a;
+}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#080d16,#0b1220);
+  color:var(--text);
+  font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+.page{max-width:1120px;margin:auto;padding:32px 20px 70px}
+.hero{display:flex;justify-content:space-between;gap:30px;align-items:center;margin-bottom:22px}
+.hero h1{font-size:34px;margin:4px 0 7px}
+.hero p{margin:0;color:var(--muted);max-width:700px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--accent2)}
+.operation-card{
+  background:rgba(17,24,39,.96);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.12)
+}
+.operation-card h3{margin:0 0 8px}
+.muted{margin:0 0 18px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+label{display:grid;gap:7px;color:#d9e3f1;font-weight:600}
+input,select,textarea{
+  width:100%;
+  color:var(--text);
+  background:#0a111e;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:11px 12px;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(72,168,255,.1)}
+.injury-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(310px,.9fr);gap:28px;align-items:center}
+.injury-picker,.injury-list{
+  padding:15px;
+  border:1px solid var(--border);
+  background:var(--card2);
+  border-radius:9px
+}
+.injury-picker strong{display:block;margin-bottom:12px;color:#fff}
+.injury-options,.choice-grid{display:flex;flex-wrap:wrap;gap:8px}
+.injury-list{margin-top:12px;min-height:64px}
+.injury-entry{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 10px;border-bottom:1px solid #223047
+}
+.injury-entry:last-child{border-bottom:0}
+.injury-entry b{color:#fff}
+.empty{color:var(--muted)}
+.btn,.choice-btn,.injury-options button{
+  border:1px solid #34435a;
+  color:#fff;background:#101827;
+  padding:9px 12px;border-radius:7px;cursor:pointer;
+  transition:.15s ease;
+}
+.btn:hover,.choice-btn:hover,.injury-options button:hover{border-color:var(--accent);background:#13233a}
+.btn.primary{background:#163b5c;border-color:#429ee8}
+.btn.danger{border-color:#6c3340;color:#ffc3ca}
+.choice-btn.active,.injury-options button.active{
+  background:#183958;border-color:#62b7f4;
+  box-shadow:inset 0 0 0 1px rgba(98,183,244,.25)
+}
+.remove-btn{
+  width:28px;height:28px;border:1px solid #69343e;border-radius:6px;
+  background:#2a151b;color:#ff9aa8;cursor:pointer
+}
+.body-board{display:flex;justify-content:center;padding:4px 0}
+.body-silhouette{position:relative;width:270px;height:420px}
+.body-head,.body-neck,.body-chest,.body-abdomen,.body-pelvis,
+.body-arm,.body-forearm,.body-hand,.body-leg,.body-knee,.body-foot{
+  position:absolute;border:1px solid #718198;background:rgba(74,91,116,.18)
+}
+.body-head{width:58px;height:64px;border-radius:50%;left:106px;top:7px}
+.body-neck{width:22px;height:22px;left:124px;top:67px;border-radius:6px}
+.body-chest{width:84px;height:106px;left:93px;top:82px;border-radius:38px 38px 20px 20px}
+.body-abdomen{width:73px;height:60px;left:99px;top:177px;border-radius:18px}
+.body-pelvis{width:77px;height:50px;left:96px;top:229px;border-radius:20px}
+.body-arm{width:27px;height:103px;top:91px;border-radius:18px}
+.body-arm.left{left:66px;transform:rotate(13deg)}
+.body-arm.right{right:66px;transform:rotate(-13deg)}
+.body-forearm{width:23px;height:96px;top:179px;border-radius:16px}
+.body-forearm.left{left:49px;transform:rotate(16deg)}
+.body-forearm.right{right:49px;transform:rotate(-16deg)}
+.body-hand{width:26px;height:33px;top:268px;border-radius:50%}
+.body-hand.left{left:39px}.body-hand.right{right:39px}
+.body-leg{width:34px;height:112px;top:273px;border-radius:18px}
+.body-leg.left{left:96px}.body-leg.right{right:96px}
+.body-knee{width:31px;height:31px;top:355px;border-radius:50%}
+.body-knee.left{left:98px}.body-knee.right{right:98px}
+.body-foot{width:45px;height:22px;top:394px;border-radius:14px}
+.body-foot.left{left:83px}.body-foot.right{right:83px}
+.body-zone{
+  position:absolute;z-index:5;transform:translate(-50%,-50%);
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+  border:2px solid #73829a;cursor:pointer
+}
+.body-zone:before,.body-zone:after{
+  content:"";position:absolute;left:50%;top:50%;width:13px;height:2px;background:#7e8ca2
+}
+.body-zone:before{transform:translate(-50%,-50%) rotate(45deg)}
+.body-zone:after{transform:translate(-50%,-50%) rotate(-45deg)}
+.body-zone:hover,.body-zone.selected{border-color:var(--accent);background:rgba(72,168,255,.2);box-shadow:0 0 0 5px rgba(72,168,255,.08)}
+.report-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
+.report-head h3{margin-bottom:3px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+textarea{resize:vertical;min-height:160px}
+.status{min-height:22px;margin-top:8px;color:#8dd6a8}
+@media(max-width:800px){
+  .hero,.report-head{align-items:flex-start;flex-direction:column}
+  .form-grid,.injury-layout{grid-template-columns:1fr}
+  .body-silhouette{transform:scale(.9);transform-origin:top center;margin-bottom:-38px}
+}
+
+.compact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.compact-grid h3{margin-bottom:12px}
+.single-choice .choice-btn.active{
+  background:#183958;
+  border-color:#62b7f4;
+}
+@media(max-width:800px){
+  .compact-grid{grid-template-columns:1fr}
+}

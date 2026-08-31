@@ -125,17 +125,3 @@ textarea{resize:vertical;min-height:160px}
   .form-grid,.injury-layout{grid-template-columns:1fr}
   .body-silhouette{transform:scale(.9);transform-origin:top center;margin-bottom:-38px}
 }
-
-.compact-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-.compact-grid h3{margin-bottom:12px}
-.single-choice .choice-btn.active{
-  background:#183958;
-  border-color:#62b7f4;
-}
-@media(max-width:800px){
-  .compact-grid{grid-template-columns:1fr}
-}

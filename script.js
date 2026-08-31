@@ -5,11 +5,9 @@ const injuries = [
 ];
 
 const acts = [
-  'Désinfection','Lavage de plaie','Anesthésie locale','Retrait de balle',
-  'Retrait de verre','Points de suture','Agrafes','Pansement','Bandage',
-  'Garrot','Attelle','Plâtre','Collier cervical','Scanner','Radio',
-  'Anti-douleur','Perfusion','Transfusion','Oxygène','Massage cardiaque',
-  'Stabilisation'
+  'Désinfection','Retrait de balle','Retrait de verre','Points de suture',
+  'Pansement','Bandage','Garrot','Attelle','Scanner','Radio','Anti-douleur',
+  'Perfusion','Transfusion','Oxygène','Massage cardiaque','Stabilisation'
 ];
 
 const postop = [
@@ -22,10 +20,7 @@ const state = {
   zone: null,
   injuries: [],
   acts: new Set(),
-  postop: new Set(),
-  anesthesia: null,
-  mobility: null,
-  status: null
+  postop: new Set()
 };
 
 const injuryOptions = document.getElementById('injuryOptions');
@@ -115,25 +110,6 @@ function renderInjuries() {
 makeButtons(actsRoot, acts, state.acts);
 makeButtons(postopRoot, postop, state.postop);
 
-document.querySelectorAll('[data-single-group]').forEach(group => {
-  const key = group.dataset.singleGroup;
-
-  group.querySelectorAll('[data-choice-value]').forEach(button => {
-    button.addEventListener('click', () => {
-      const alreadySelected = button.classList.contains('active');
-
-      group.querySelectorAll('[data-choice-value]').forEach(b => b.classList.remove('active'));
-
-      if (alreadySelected) {
-        state[key] = null;
-      } else {
-        button.classList.add('active');
-        state[key] = button.dataset.choiceValue;
-      }
-    });
-  });
-});
-
 function generateReport() {
   const patient = document.getElementById('patient').value.trim();
   const doctor = document.getElementById('doctor').value.trim();
@@ -167,16 +143,8 @@ function generateReport() {
   lines.push(state.postop.size ? [...state.postop].map(v => `- ${v}`).join('\n') : '- Aucune consigne renseignée');
 
   lines.push('');
-  lines.push('ANESTHÉSIE');
-  lines.push(`- ${state.anesthesia || 'Non renseignée'}`);
-
-  lines.push('');
-  lines.push('DÉPLACEMENT / SORTIE');
-  lines.push(`- ${state.mobility || 'Non renseigné'}`);
-
-  lines.push('');
   lines.push('ÉTAT DU PATIENT');
-  lines.push(`- ${state.status || 'Non renseigné'}`);
+  lines.push('Patient pris en charge et stabilisé selon les éléments renseignés.');
 
   document.getElementById('report').value = lines.join('\n');
 }
@@ -206,9 +174,6 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   state.injuries = [];
   state.acts.clear();
   state.postop.clear();
-  state.anesthesia = null;
-  state.mobility = null;
-  state.status = null;
 
   document.getElementById('patient').value = '';
   document.getElementById('doctor').value = '';
